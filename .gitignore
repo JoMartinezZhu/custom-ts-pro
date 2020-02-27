@@ -1,0 +1,17 @@
+# node
+node_modules
+npm-debug*
+
+# dist & deploy
+/dist
+/deploy
+
+# cache
+/.cache-loader
+/.awcache
+# test
+.coverage
+test
+
+# IDE
+.vscode
