@@ -7,8 +7,8 @@ npm-debug*
 /deploy
 
 # cache
-/.cache-loader
-/.awcache
+.cache-loader
+.awcache
 # test
 .coverage
 test
