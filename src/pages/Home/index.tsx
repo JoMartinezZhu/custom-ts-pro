@@ -1,9 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { Button } from 'antd';
-
-import ShowCount from '@components/ShowCount';
-import CountOperation from '@components/CountOperation';
+import { Pagination, Button } from 'antd';
 import { ArticleAPI } from '@services/index';
 
 import styles from './index.scss';
@@ -20,8 +17,7 @@ function Home({ history }: RouteComponentProps) {
     return (
         <div>
             <div className={styles.home}>Home Page</div>
-            <ShowCount />
-            <CountOperation />
+            <Pagination defaultCurrent={1} total={50} showSizeChanger />
             <Button onClick={getList}>get article list</Button>
         </div>
     );

@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 
 import routerMap from './routerMap';
 
@@ -23,7 +25,9 @@ function App() {
 
 ReactDOM.render(
     <Provider>
-        <App />
+        <ConfigProvider locale={zhCN}>
+            <App />
+        </ConfigProvider>
     </Provider>,
     document.getElementById('app')
 );
