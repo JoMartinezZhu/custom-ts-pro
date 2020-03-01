@@ -1,5 +1,8 @@
 @import 'base.scss';
 
-.test {
-  color: $red;
+:global {
+  body {
+    color: $red;
+    padding: 20px;
+  }
 }

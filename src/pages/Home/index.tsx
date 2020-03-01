@@ -1,13 +1,26 @@
 import React from 'react';
-import ViewTest from '@components/ViewTest';
+import { RouteComponentProps } from 'react-router-dom';
+import { Button } from 'antd';
 
-function Home() {
+import ShowCount from '@components/ShowCount';
+import CountOperation from '@components/CountOperation';
+import { ArticleAPI } from '@services/index';
+
+function Home({ history }: RouteComponentProps) {
+  const getList = async () => {
+    try {
+      const res = await ArticleAPI.getArticleList();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
-      <div>
-        Home Pages:
-        <ViewTest />
-      </div>
+      <div>Home Page</div>
+      <ShowCount />
+      <CountOperation />
+      <Button onClick={getList}>get article list</Button>
     </div>
   );
 }

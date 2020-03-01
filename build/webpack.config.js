@@ -21,6 +21,8 @@ module.exports = {
     alias: {
       '@pages': resolve('src/pages'),
       '@components': resolve('src/components'),
+      '@store': resolve('src/store'),
+      '@services': resolve('src/services'),
     },
   },
   plugins,
@@ -31,7 +33,7 @@ module.exports = {
   devServer: {
     port: 8081,
     disableHostCheck: true,
-    historyApiFallback: true,
+    historyApiFallback: true, // 单页应用中当react的路由模式是BrowserRouter，historyApiFallback要设置为true,会在找不到页面的情况下跳转回index.html
     host: '0.0.0.0',
     after: function() {
       openBrowser(`http://localhost:8081`);

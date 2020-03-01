@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'antd';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Home from '@pages/Home';
+import routerMap from './routerMap';
 
-import styles from './index.scss';
+import './index.scss';
+import Provider from '@store/index';
 
 function App() {
   return (
-    <div className={styles.test}>
-      app
-      <div>
-        <Home />I am a tester I am a tester I am a tester
-      </div>
-      <Button type="primary">click</Button>
-    </div>
+    <Suspense fallback={'loading'}>
+      <Router>
+        <Switch>
+          {routerMap.map(item => (
+            <Route exact key={item.path} path={item.path} component={item.component} />
+          ))}
+        </Switch>
+      </Router>
+    </Suspense>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+  <Provider>
+    <App />
+  </Provider>,
+  document.getElementById('app'),
+);
