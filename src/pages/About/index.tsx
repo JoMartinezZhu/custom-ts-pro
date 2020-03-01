@@ -1,18 +1,11 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { Button } from 'antd';
 
-function About({ history }: RouteComponentProps) {
+import styles from './index.scss';
+
+function About() {
   return (
     <div>
-      <div>About Page</div>
-      <Button
-        onClick={() => {
-          history.push('/');
-        }}
-      >
-        click
-      </Button>
+      <div className={styles.about}>About Page</div>
     </div>
   );
 }

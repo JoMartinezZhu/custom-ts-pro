@@ -6,6 +6,8 @@ import ShowCount from '@components/ShowCount';
 import CountOperation from '@components/CountOperation';
 import { ArticleAPI } from '@services/index';
 
+import styles from './index.scss';
+
 function Home({ history }: RouteComponentProps) {
   const getList = async () => {
     try {
@@ -17,7 +19,7 @@ function Home({ history }: RouteComponentProps) {
   };
   return (
     <div>
-      <div>Home Page</div>
+      <div className={styles.home}>Home Page</div>
       <ShowCount />
       <CountOperation />
       <Button onClick={getList}>get article list</Button>
