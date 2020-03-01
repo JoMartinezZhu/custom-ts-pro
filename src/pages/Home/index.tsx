@@ -7,8 +7,8 @@ import CountOperation from '@components/CountOperation';
 import { ArticleAPI } from '@services/index';
 
 import styles from './index.scss';
-// { history }: RouteComponentProps
-function Home() {
+
+function Home({ history }: RouteComponentProps) {
     const getList = async () => {
         try {
             const res = await ArticleAPI.getArticleList();

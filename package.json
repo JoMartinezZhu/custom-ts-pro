@@ -6,11 +6,12 @@
     "scripts": {
         "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js",
         "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
-        "lint": "eslint src --ext .ts,tsx && stylelint \"./src/**/*.scss\""
+        "lint": "eslint src --ext .ts,tsx && stylelint \"./src/**/*.scss\"",
+        "lint-staged": "lint-staged"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run lint"
+            "pre-commit": "npm run lint-staged"
         }
     },
     "keywords": [],
@@ -53,6 +54,7 @@
         "husky": "^4.2.3",
         "less": "^3.11.1",
         "less-loader": "^5.0.0",
+        "lint-staged": "^10.0.8",
         "mini-css-extract-plugin": "^0.9.0",
         "node-sass": "^4.13.1",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
