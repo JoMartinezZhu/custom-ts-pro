@@ -1,11 +1,11 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+// import { RouteComponentProps } from 'react-router-dom';
 import { Pagination, Button } from 'antd';
 import { ArticleAPI } from '@services/index';
 
 import styles from './index.scss';
-
-function Home({ history }: RouteComponentProps) {
+// { history }: RouteComponentProps
+function Home() {
     const getList = async () => {
         try {
             const res = await ArticleAPI.getArticleList();
