@@ -8,22 +8,22 @@ import './index.scss';
 import Provider from '@store/index';
 
 function App() {
-  return (
-    <Suspense fallback={'loading'}>
-      <Router>
-        <Switch>
-          {routerMap.map(item => (
-            <Route exact key={item.path} path={item.path} component={item.component} />
-          ))}
-        </Switch>
-      </Router>
-    </Suspense>
-  );
+    return (
+        <Suspense fallback={'loading'}>
+            <Router>
+                <Switch>
+                    {routerMap.map(item => (
+                        <Route exact key={item.path} path={item.path} component={item.component} />
+                    ))}
+                </Switch>
+            </Router>
+        </Suspense>
+    );
 }
 
 ReactDOM.render(
-  <Provider>
-    <App />
-  </Provider>,
-  document.getElementById('app'),
+    <Provider>
+        <App />
+    </Provider>,
+    document.getElementById('app')
 );

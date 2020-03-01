@@ -7,24 +7,24 @@ import CountOperation from '@components/CountOperation';
 import { ArticleAPI } from '@services/index';
 
 import styles from './index.scss';
-
-function Home({ history }: RouteComponentProps) {
-  const getList = async () => {
-    try {
-      const res = await ArticleAPI.getArticleList();
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return (
-    <div>
-      <div className={styles.home}>Home Page</div>
-      <ShowCount />
-      <CountOperation />
-      <Button onClick={getList}>get article list</Button>
-    </div>
-  );
+// { history }: RouteComponentProps
+function Home() {
+    const getList = async () => {
+        try {
+            const res = await ArticleAPI.getArticleList();
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    return (
+        <div>
+            <div className={styles.home}>Home Page</div>
+            <ShowCount />
+            <CountOperation />
+            <Button onClick={getList}>get article list</Button>
+        </div>
+    );
 }
 
 export default Home;
