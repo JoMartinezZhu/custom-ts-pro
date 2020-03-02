@@ -26,7 +26,9 @@ module.exports = {
             '@pages': resolve('src/pages'),
             '@components': resolve('src/components'),
             '@store': resolve('src/store'),
-            '@services': resolve('src/services')
+            '@services': resolve('src/services'),
+            '@models': resolve('src/models'),
+            '@utils': resolve('src/utils')
         }
     },
     plugins,

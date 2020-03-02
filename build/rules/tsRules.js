@@ -5,25 +5,34 @@ const { cacheLoader, threadLoader } = require('../loaders');
  */
 
 module.exports = [
-  {
-    test: /\.tsx?$/,
-    include: resolve('src'),
-    use: [
-      cacheLoader,
-      threadLoader(),
-      {
-        loader: 'babel-loader',
-        options: {
-          babelrc: false,
-          presets: ['@babel/preset-typescript', '@babel/preset-react'],
-          plugins: [
-            ['@babel/plugin-proposal-decorators', { legacy: true }],
-            ['@babel/plugin-proposal-class-properties', { loose: true }],
-            '@babel/plugin-syntax-dynamic-import',
-            ['import', { libraryName: 'antd', libraryDirectory: 'lib', style: true }],
-          ],
-        },
-      },
-    ],
-  },
+    {
+        test: /\.tsx?$/,
+        include: resolve('src'),
+        use: [
+            cacheLoader,
+            threadLoader(),
+            {
+                loader: 'babel-loader',
+                options: {
+                    babelrc: false,
+                    presets: ['@babel/preset-typescript', '@babel/preset-react'],
+                    plugins: [
+                        ['@babel/plugin-proposal-decorators', { legacy: true }],
+                        ['@babel/plugin-proposal-class-properties', { loose: true }],
+                        '@babel/plugin-syntax-dynamic-import',
+                        [
+                            'import',
+                            { libraryName: 'antd', libraryDirectory: 'lib', style: true },
+                            {
+                                libraryName: 'ant-design-pro',
+                                libraryDirectory: 'lib',
+                                style: true,
+                                camel2DashComponentName: false
+                            }
+                        ]
+                    ]
+                }
+            }
+        ]
+    }
 ];
