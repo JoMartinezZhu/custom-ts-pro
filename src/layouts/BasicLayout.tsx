@@ -16,10 +16,10 @@ import { Dispatch } from 'redux';
 import { connect } from 'dva';
 import { GithubOutlined } from '@ant-design/icons';
 import { Result, Button } from 'antd';
-import Authorized from '@/utils/Authorized';
-import RightContent from '@/components/GlobalHeader/RightContent';
-import { ConnectState } from '@/models/connect';
-import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
+import Authorized from '@utils/Authorized';
+import RightContent from '@components/GlobalHeader/RightContent';
+import { ConnectState } from '@models/connect';
+import { isAntDesignPro, getAuthorityFromRouter } from '@utils/utils';
 import logo from '../assets/logo.svg';
 
 const noMatch = (
@@ -186,7 +186,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             {...props}
             {...settings}
         >
-            <Authorized authority={authorized!.authority} noMatch={noMatch}>
+            <Authorized authority={authorized?.authority} noMatch={noMatch}>
                 {children}
             </Authorized>
         </ProLayout>

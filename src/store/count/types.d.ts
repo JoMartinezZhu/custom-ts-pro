@@ -1,9 +1,7 @@
 export as namespace ICount;
 
 export interface State {
-  count: number;
+    count: number;
 }
 
-type Action =
-  | { type: 'ADD'; payload: { num: number } }
-  | { type: 'MINUS'; payload: { num: number } };
+type Action = { type: 'ADD'; payload: { num: number } } | { type: 'MINUS'; payload: { num: number } };
