@@ -28,7 +28,8 @@ module.exports = {
             '@store': resolve('src/store'),
             '@services': resolve('src/services'),
             '@models': resolve('src/models'),
-            '@utils': resolve('src/utils')
+            '@utils': resolve('src/utils'),
+            '@layouts': resolve('src/layouts')
         }
     },
     plugins,

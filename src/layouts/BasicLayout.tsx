@@ -11,7 +11,7 @@ import ProLayout, {
 } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
-import { Link } from 'umi';
+import { Link } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
 import { GithubOutlined } from '@ant-design/icons';
@@ -19,7 +19,7 @@ import { Result, Button } from 'antd';
 import Authorized from '@utils/Authorized';
 import RightContent from '@components/GlobalHeader/RightContent';
 import { ConnectState } from '@models/connect';
-import { isAntDesignPro, getAuthorityFromRouter } from '@utils/utils';
+import { getAuthorityFromRouter } from '@utils/utils';
 import logo from '../assets/logo.svg';
 
 const noMatch = (
@@ -86,10 +86,6 @@ const defaultFooterDom = (
 );
 
 const footerRender: BasicLayoutProps['footerRender'] = () => {
-    if (!isAntDesignPro()) {
-        return defaultFooterDom;
-    }
-
     return (
         <>
             {defaultFooterDom}
@@ -186,7 +182,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             {...props}
             {...settings}
         >
-            <Authorized authority={authorized?.authority} noMatch={noMatch}>
+            <Authorized authority={authorized && authorized.authority} noMatch={noMatch}>
                 {children}
             </Authorized>
         </ProLayout>

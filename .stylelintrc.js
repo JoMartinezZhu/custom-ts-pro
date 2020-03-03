@@ -1,7 +1,7 @@
 module.exports = {
     extends: 'stylelint-config-standard',
     plugins: ['stylelint-scss'],
-    ignoreFiles: ['node_modules/**/*.scss', '**/*.md', '**/*.ts', '**/*.tsx', '**/*.js'],
+    ignoreFiles: ['node_modules/**/*.scss', '**/*.md', '**/*.ts', '**/*.tsx', '**/*.js', '**/*.ejs'],
     rules: {
         indentation: 4,
         'no-missing-end-of-source-newline': null,

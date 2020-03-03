@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { MenuDataItem } from '@ant-design/pro-layout';
-import { RouterTypes } from 'umi';
+import { RouterTypes } from 'react-router-dom';
 import { GlobalModelState } from './global';
 import { DefaultSettings as SettingModelState } from '../../config/defaultSettings';
 import { UserModelState } from './user';

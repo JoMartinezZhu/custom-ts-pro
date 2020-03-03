@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Effect } from 'dva';
 import { stringify } from 'querystring';
-import { router } from 'umi';
+// import { router } from 'umi';
 
 import { fakeAccountLogin } from 'services/login';
 import { setAuthority } from 'utils/authority';
@@ -56,7 +56,7 @@ const Model: LoginModelType = {
                         return;
                     }
                 }
-                router.replace(redirect || '/');
+                // router.replace(redirect || '/');
             }
         },
 
@@ -64,12 +64,12 @@ const Model: LoginModelType = {
             const { redirect } = getPageQuery();
             // Note: There may be security issues, please note
             if (window.location.pathname !== '/user/login' && !redirect) {
-                router.replace({
-                    pathname: '/user/login',
-                    search: stringify({
-                        redirect: window.location.href
-                    })
-                });
+                // router.replace({
+                //     pathname: '/user/login',
+                //     search: stringify({
+                //         redirect: window.location.href
+                //     })
+                // });
             }
         }
     },

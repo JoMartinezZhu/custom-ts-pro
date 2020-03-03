@@ -1,4 +1,4 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { resolve } = require('../utils');
 const { cacheLoader, threadLoader } = require('../loaders');
@@ -14,8 +14,8 @@ module.exports = [
     {
         test: /\.scss$/,
         use: [
-            // 'style-loader',
-            MiniCssExtractPlugin.loader,
+            'style-loader',
+            // MiniCssExtractPlugin.loader,
             cacheLoader,
             threadLoader(2),
             typingsForCssModulesLoaderConf,
@@ -39,8 +39,8 @@ module.exports = [
     {
         test: /\.less$/,
         use: [
-            // 'style-loader',
-            MiniCssExtractPlugin.loader,
+            'style-loader',
+            // MiniCssExtractPlugin.loader,
             'css-loader',
             {
                 loader: 'less-loader',

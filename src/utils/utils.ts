@@ -1,5 +1,5 @@
 import { parse } from 'querystring';
-import pathRegexp from 'path-to-regexp';
+import * as pathRegexp from 'path-to-regexp';
 import { Route } from '@models/connect';
 
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;

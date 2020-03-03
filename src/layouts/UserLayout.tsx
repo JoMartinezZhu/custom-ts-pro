@@ -1,6 +1,6 @@
 import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import { Helmet } from 'react-helmet';
-import { Link } from 'umi';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { connect } from 'dva';

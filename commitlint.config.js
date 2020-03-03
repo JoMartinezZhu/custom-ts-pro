@@ -1,7 +1,7 @@
 /**
  * @doc:commitlint.doc.png
  * https://github.com/commitizen/cz-cli
- * // feat:             feature, 表示新增了一个新功能
+ * feat:             feature, 表示新增了一个新功能
  * fix:              表示这是一次bug fix
  * improvement:      对现有功能的完善
  * docs:             仅仅只是改变了文档类的文件，如readme.txt
