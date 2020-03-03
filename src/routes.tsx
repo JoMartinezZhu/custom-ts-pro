@@ -1,5 +1,7 @@
 import { lazy } from 'react';
 
+import { RouteConfig } from 'react-router-config';
+
 import UserLayout from '@layouts/UserLayout';
 import SecurityLayout from '@layouts/SecurityLayout';
 import BasicLayout from '@layouts/BasicLayout';
@@ -70,21 +72,6 @@ const routes = [
     {
         component: NoFoundPage
     }
-];
+] as RouteConfig[];
 
-const routesTemp = [
-    {
-        path: '/',
-        component: Welcome
-    },
-    // {
-    //     path: '/login',
-    //     component: Login
-    // },
-    {
-        path: '/about',
-        component: Home
-    }
-];
-
-export default routesTemp;
+export default routes;
