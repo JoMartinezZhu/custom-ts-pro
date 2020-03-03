@@ -22,3 +22,5 @@ interface Window {
 }
 
 declare const REACT_APP_ENV: 'dev' | 'dev' | 'pre' | false;
+
+declare module 'dva-loading';

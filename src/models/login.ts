@@ -3,9 +3,9 @@ import { Effect } from 'dva';
 import { stringify } from 'querystring';
 // import { router } from 'umi';
 
-import { fakeAccountLogin } from 'services/login';
-import { setAuthority } from 'utils/authority';
-import { getPageQuery } from 'utils/utils';
+import { fakeAccountLogin } from '@services/login';
+import { setAuthority } from '@utils/authority';
+import { getPageQuery } from '@utils/utils';
 
 export interface StateType {
     status?: 'ok' | 'error';
