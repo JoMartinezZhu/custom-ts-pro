@@ -2,8 +2,7 @@ import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from 
 import { Alert, Checkbox } from 'antd';
 import React, { useState } from 'react';
 import { Dispatch, AnyAction } from 'redux';
-import { Link } from 'react-router-dom';
-import { connect } from 'dva';
+import { connect, router as DvaRouter } from 'dva';
 import { StateType } from '@models/login';
 import { LoginParamsType } from '@services/login';
 import { ConnectState } from '@models/connect';

@@ -1,9 +1,8 @@
-import { Redirect, Route } from 'react-router-dom';
-
+import { router as DvaRouter } from 'dva';
 import React from 'react';
 import Authorized from './Authorized';
 import { IAuthorityType } from './CheckPermissions';
-
+const { Redirect, Route } = DvaRouter;
 interface AuthorizedRoutePops {
     currentAuthority: string;
     component: React.ComponentClass<any, any>;

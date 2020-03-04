@@ -29,7 +29,7 @@ export interface GlobalModelType {
         saveNotices: Reducer<GlobalModelState>;
         saveClearedNotices: Reducer<GlobalModelState>;
     };
-    subscriptions: { setup: Subscription };
+    subscriptions?: { setup: Subscription };
 }
 
 const GlobalModel: GlobalModelType = {
@@ -122,16 +122,16 @@ const GlobalModel: GlobalModelType = {
                 notices: state.notices.filter((item): boolean => item.type !== payload)
             };
         }
-    },
-
-    subscriptions: {
-        setup({ history }): void {
-            // Subscribe history(url) change, trigger `load` action if pathname is `/`
-            history.listen(({ pathname, search }): void => {
-                console.log('history(url) change', pathname + search);
-            });
-        }
     }
+
+    // subscriptions: {
+    //     setup({ history }): void {
+    //         // Subscribe history(url) change, trigger `load` action if pathname is `/`
+    //         history.listen(({ pathname, search }): void => {
+    //             console.log('history(url) change', pathname + search);
+    //         });
+    //     }
+    // }
 };
 
 export default GlobalModel;

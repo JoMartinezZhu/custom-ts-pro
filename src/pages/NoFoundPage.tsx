@@ -1,8 +1,8 @@
 import { Button, Result } from 'antd';
 import React from 'react';
-// import { router } from 'umi';
+import { RouteComponentProps } from 'dva/router';
 
-const NoFoundPage: React.FC<{}> = () => (
+const NoFoundPage: React.FC<RouteComponentProps> = props => (
     <Result
         status={404}
         title="404"
@@ -11,7 +11,7 @@ const NoFoundPage: React.FC<{}> = () => (
             <Button
                 type="primary"
                 onClick={() => {
-                    /*router.push('/') */
+                    props.history.push('/');
                 }}
             >
                 Back Home

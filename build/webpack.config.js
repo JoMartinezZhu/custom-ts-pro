@@ -18,7 +18,8 @@ module.exports = {
     output: {
         path: resolve('dist'),
         filename: isDevMode ? '[name].js' : '[name].[contenthash].js',
-        chunkFilename: isDevMode ? '[name].js' : '[name].[contenthash].js'
+        chunkFilename: isDevMode ? '[name].js' : '[name].[contenthash].js',
+        publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],

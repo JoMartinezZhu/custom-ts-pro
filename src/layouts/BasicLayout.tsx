@@ -11,9 +11,8 @@ import ProLayout, {
 } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect, router as DvaRouter } from 'dva';
 import { GithubOutlined } from '@ant-design/icons';
 import { Result, Button } from 'antd';
 import Authorized from '@utils/Authorized';
@@ -29,7 +28,7 @@ const noMatch = (
         subTitle="Sorry, you are not authorized to access this page."
         extra={
             <Button type="primary">
-                <Link to="/user/login">Go Login</Link>
+                <DvaRouter.Link to="/user/login">Go Login</DvaRouter.Link>
             </Button>
         }
     />
@@ -148,10 +147,10 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             logo={logo}
             formatMessage={formatMessage}
             menuHeaderRender={(logoDom, titleDom) => (
-                <Link to="/">
+                <DvaRouter.Link to="/">
                     {logoDom}
                     {titleDom}
-                </Link>
+                </DvaRouter.Link>
             )}
             onCollapse={handleMenuCollapse}
             menuItemRender={(menuItemProps, defaultDom) => {
@@ -159,7 +158,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
                     return defaultDom;
                 }
 
-                return <Link to={menuItemProps.path}>{defaultDom}</Link>;
+                return <DvaRouter.Link to={menuItemProps.path}>{defaultDom}</DvaRouter.Link>;
             }}
             breadcrumbRender={(routers = []) => [
                 {
@@ -171,7 +170,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             itemRender={(route, params, routes, paths) => {
                 const first = routes.indexOf(route) === 0;
                 return first ? (
-                    <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+                    <DvaRouter.Link to={paths.join('/')}>{route.breadcrumbName}</DvaRouter.Link>
                 ) : (
                     <span>{route.breadcrumbName}</span>
                 );

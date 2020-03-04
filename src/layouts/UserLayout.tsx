@@ -1,9 +1,8 @@
 import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 import React from 'react';
 import { formatMessage } from 'umi-plugin-react/locale';
-import { connect } from 'dva';
+import { connect, router as DvaRouter } from 'dva';
 import { ConnectProps, ConnectState } from '@models/connect';
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
@@ -27,6 +26,7 @@ const UserLayout: React.FC<UserLayoutProps> = props => {
             pathname: ''
         }
     } = props;
+
     const { breadcrumb } = getMenuData(routes);
     const title = getPageTitle({
         pathname: location.pathname,
@@ -45,10 +45,10 @@ const UserLayout: React.FC<UserLayoutProps> = props => {
                 <div className={styles.content}>
                     <div className={styles.top}>
                         <div className={styles.header}>
-                            <Link to="/">
+                            <DvaRouter.Link to="/">
                                 <img alt="logo" className={styles.logo} src={logo} />
                                 <span className={styles.title}>Ant Design</span>
-                            </Link>
+                            </DvaRouter.Link>
                         </div>
                         <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
                     </div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'dva';
+import { connect, router as DvaRouter } from 'dva';
 import Authorized from '@utils/Authorized';
 import { getRouteAuthority } from '@utils/utils';
 import { ConnectProps, ConnectState, UserModelState } from '@models/connect';
@@ -25,7 +24,7 @@ const AuthComponent: React.FC<AuthComponentProps> = ({
     return (
         <Authorized
             authority={getRouteAuthority(location.pathname, routes) || ''}
-            noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to="/user/login" />}
+            noMatch={isLogin ? <DvaRouter.Redirect to="/exception/403" /> : <DvaRouter.Redirect to="/user/login" />}
         >
             {children}
         </Authorized>
