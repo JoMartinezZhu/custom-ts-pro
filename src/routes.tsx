@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 
 import { RouteConfig } from 'react-router-config';
 import renderRoutes from '@utils/renderRoutes';
@@ -18,98 +18,44 @@ const Home = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/Home'));
 
 const routes = [
     {
+        path: '/',
+        exact: true,
+        redirect: '/welcome'
+    },
+    {
         path: '/user',
+        exact: true,
         component: UserLayout,
         routes: [
+            {
+                path: '/user',
+                exact: true,
+                redirect: '/user/login'
+            },
             {
                 name: 'login',
                 path: '/user/login',
                 component: Login
             }
         ]
-    }
-] as any;
-
-const routesTemp = [
+    },
     {
         path: '/welcome',
-        name: 'welcome',
-        icon: 'smile',
         exact: true,
         component: Welcome
     },
     {
-        path: '/admin',
-        name: 'admin',
-        icon: 'crown',
+        path: '/404',
         exact: true,
-        component: Admin
+        component: NoFoundPage
     }
-] as RouteConfig[];
+] as any;
 
 function GeneratorRoutes(props: any) {
-    return <Router history={props.history}>{renderRoutes(routes)}</Router>;
+    return (
+        <Suspense fallback="loading">
+            <Router history={props.history}>{renderRoutes(routes)}</Router>
+        </Suspense>
+    );
 }
 export default GeneratorRoutes;
-
-// const routes = [
-//     {
-//         path: '/user',
-//         component: UserLayout,
-//         routes: [
-//             {
-//                 name: 'login',
-//                 path: '/user/login',
-//                 component: Login
-//             }
-//         ]
-//     },
-//     {
-//         path: '/',
-//         component: SecurityLayout,
-//         routes: [
-//             {
-//                 path: '/',
-//                 component: BasicLayout,
-//                 // authority: ['admin', 'user'],
-//                 routes: [
-//                     {
-//                         path: '/',
-//                         redirect: '/welcome'
-//                     },
-//                     {
-//                         path: '/welcome',
-//                         name: 'welcome',
-//                         icon: 'smile',
-//                         component: Welcome
-//                     },
-//                     {
-//                         path: '/admin',
-//                         name: 'admin',
-//                         icon: 'crown',
-//                         component: Admin,
-//                         // authority: ['admin'],
-//                         routes: [
-//                             {
-//                                 path: '/admin/sub-page',
-//                                 name: 'sub-page',
-//                                 icon: 'smile',
-//                                 component: Home
-//                                 // authority: ['admin']
-//                             }
-//                         ]
-//                     },
-//                     {
-//                         component: NoFoundPage
-//                     }
-//                 ]
-//             },
-//             {
-//                 component: NoFoundPage
-//             }
-//         ]
-//     },
-//     {
-//         component: NoFoundPage
-//     }
-// ] as RouteConfig[];

@@ -1,53 +1,68 @@
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const { resolve } = require('../utils');
 const { cacheLoader, threadLoader } = require('../loaders');
 
-const typingsForCssModulesLoaderConf = {
-    loader: '@teamsupercell/typings-for-css-modules-loader',
-    options: {
-        formatter: 'prettier'
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+const lessRegex = /\.(less)$/;
+const lessModuleRegex = /\.module\.(less)$/;
+
+// common function to get style loaders
+const getStyleLoaders = (cssOptions, preProcessor) => {
+    const loaders = [
+        require.resolve('style-loader'),
+        {
+            loader: require.resolve('css-loader'),
+            options: cssOptions
+        }
+    ].filter(Boolean);
+    if (preProcessor) {
+        loaders.push({
+            loader: require.resolve(preProcessor),
+            options: {
+                sourceMap: true,
+                javascriptEnabled: true
+            }
+        });
     }
+    return loaders;
 };
 
 module.exports = [
     {
-        test: /\.scss$/,
-        use: [
-            'style-loader',
-            // MiniCssExtractPlugin.loader,
-            cacheLoader,
-            threadLoader(2),
-            typingsForCssModulesLoaderConf,
-            {
-                loader: 'css-loader',
-                options: {
-                    modules: {
-                        localIdentName: '[name]__[hash:base64:8]'
-                    },
-                    sourceMap: true,
-                    importLoaders: 2,
-                    localsConvention: 'camelCase'
-                }
-            },
-            {
-                loader: 'sass-loader',
-                options: { includePaths: [resolve('src/styles')] }
-            }
-        ]
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        use: getStyleLoaders({
+            importLoaders: 1,
+            sourceMap: true
+        }),
+        sideEffects: true
     },
     {
-        test: /\.less$/,
-        use: [
-            'style-loader',
-            // MiniCssExtractPlugin.loader,
-            'css-loader',
+        test: lessRegex,
+        exclude: lessModuleRegex,
+        use: getStyleLoaders(
             {
-                loader: 'less-loader',
-                options: {
-                    javascriptEnabled: true
+                importLoaders: 2,
+                sourceMap: true
+            },
+            'less-loader'
+        ),
+        sideEffects: true
+    },
+    // using the extension .module.less
+    {
+        test: lessModuleRegex,
+        use: getStyleLoaders(
+            {
+                importLoaders: 2,
+                sourceMap: true,
+                modules: {
+                    getLocalIdent: getCSSModuleLocalIdent
                 }
-            }
-        ]
+            },
+            'less-loader'
+        )
     }
 ];

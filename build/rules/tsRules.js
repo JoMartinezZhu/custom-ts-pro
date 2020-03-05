@@ -22,7 +22,7 @@ module.exports = [
                         '@babel/plugin-syntax-dynamic-import',
                         '@babel/plugin-proposal-optional-chaining',
                         '@babel/plugin-syntax-optional-chaining',
-                        ['import', { libraryName: 'antd', libraryDirectory: 'lib', style: true }]
+                        ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }]
                     ]
                 }
             }
