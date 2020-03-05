@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-
+import { SmileOutlined, TableOutlined } from '@ant-design/icons';
 import { renderRoutes } from '@utils/renderer-react';
 
 import UserLayout from '@layouts/UserLayout';
@@ -16,11 +16,6 @@ const Welcome = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/Welcome
 const Home = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/Home'));
 
 const routes = [
-    // {
-    //     path: '/',
-    //     exact: true,
-    //     redirect: '/welcome'
-    // },
     {
         path: '/user',
         component: UserLayout,
@@ -54,26 +49,26 @@ const routes = [
                         path: '/welcome',
                         exact: true,
                         name: 'welcome',
-                        icon: 'smile',
+                        icon: <SmileOutlined />,
                         component: Welcome
                     },
                     {
                         path: '/admin',
                         name: 'admin',
-                        icon: 'crown',
+                        icon: <SmileOutlined />,
                         component: Admin,
                         routes: [
                             {
                                 path: '/admin/sub-page',
                                 name: 'sub-page',
-                                icon: 'smile',
+                                icon: <SmileOutlined />,
                                 component: Welcome
                             }
                         ]
                     },
                     {
                         name: 'list.table-list',
-                        icon: 'table',
+                        icon: <TableOutlined />,
                         path: '/list',
                         component: Welcome
                     },
