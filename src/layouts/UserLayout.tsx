@@ -3,8 +3,7 @@ import { Helmet } from 'react-helmet';
 import React from 'react';
 import { connect, router as DvaRouter } from 'dva';
 import { ConnectProps, ConnectState } from '@models/connect';
-import logo from '../assets/logo.svg';
-import styles from './UserLayout.less';
+import styles from './UserLayout.module.less';
 
 export interface UserLayoutProps extends ConnectProps {
     breadcrumbNameMap: {
@@ -44,7 +43,11 @@ const UserLayout: React.FC<UserLayoutProps> = props => {
                     <div className={styles.top}>
                         <div className={styles.header}>
                             <DvaRouter.Link to="/">
-                                <img alt="logo" className={styles.logo} src={require('../assets/logo.svg')} />
+                                <img
+                                    alt="logo"
+                                    className={styles.logo}
+                                    src="https://gw.alipayobjects.com/zos/antfincdn/PmY%24TNNDBI/logo.svg"
+                                />
                                 <span className={styles.title}>Ant Design</span>
                             </DvaRouter.Link>
                         </div>

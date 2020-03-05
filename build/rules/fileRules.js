@@ -20,16 +20,11 @@ module.exports = [
         }
     },
     {
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        test: /\.(svg|png|jpe?g|gif)(\?.*)?$/,
         use: [getUrlLoader('img')]
     },
     {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         use: [getUrlLoader('fonts')]
-    },
-    {
-        test: /\.svg$/,
-        loader: [cacheLoader, threadLoader(), '@svgr/webpack'],
-        include: [resolve('src')]
     }
 ];
