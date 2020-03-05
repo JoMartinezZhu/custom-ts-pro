@@ -1,7 +1,8 @@
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
-const { resolve } = require('../utils');
-const { cacheLoader, threadLoader } = require('../loaders');
+
+// const { resolve } = require('../utils');
+// const { cacheLoader, threadLoader } = require('../loaders');
 
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;

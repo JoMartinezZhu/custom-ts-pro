@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-import { RouteConfig } from 'react-router-config';
-import renderRoutes from '@utils/renderRoutes';
+import { renderRoutes } from '@utils/renderer-react';
 
 import UserLayout from '@layouts/UserLayout';
 import SecurityLayout from '@layouts/SecurityLayout';
@@ -24,7 +23,6 @@ const routes = [
     },
     {
         path: '/user',
-        exact: true,
         component: UserLayout,
         routes: [
             {
@@ -54,7 +52,7 @@ const routes = [
 function GeneratorRoutes(props: any) {
     return (
         <Suspense fallback="loading">
-            <Router history={props.history}>{renderRoutes(routes)}</Router>
+            <Router history={props.history}>{renderRoutes({ routes })}</Router>
         </Suspense>
     );
 }

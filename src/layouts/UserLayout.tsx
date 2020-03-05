@@ -43,15 +43,15 @@ const UserLayout: React.FC<UserLayoutProps> = props => {
 
             <div className={styles.container}>
                 <div className={styles.content}>
-                    <div className={styles.top}>
+                    {/* <div className={styles.top}>
                         <div className={styles.header}>
                             <DvaRouter.Link to="/">
-                                <img alt="logo" className={styles.logo} src={logo} />
+                                <img alt="logo" className={styles.logo} src={require('../assets/logo.svg')} />
                                 <span className={styles.title}>Ant Design</span>
                             </DvaRouter.Link>
                         </div>
                         <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
-                    </div>
+                    </div> */}
                     {children}
                 </div>
                 <DefaultFooter />
