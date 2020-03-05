@@ -16,11 +16,11 @@ const Welcome = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/Welcome
 const Home = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/Home'));
 
 const routes = [
-    {
-        path: '/',
-        exact: true,
-        redirect: '/welcome'
-    },
+    // {
+    //     path: '/',
+    //     exact: true,
+    //     redirect: '/welcome'
+    // },
     {
         path: '/user',
         component: UserLayout,
@@ -38,13 +38,56 @@ const routes = [
         ]
     },
     {
-        path: '/welcome',
-        exact: true,
-        component: Welcome
+        path: '/',
+        component: SecurityLayout,
+        routes: [
+            {
+                path: '/',
+                component: BasicLayout,
+                routes: [
+                    {
+                        path: '/',
+                        exact: true,
+                        redirect: '/welcome'
+                    },
+                    {
+                        path: '/welcome',
+                        exact: true,
+                        name: 'welcome',
+                        icon: 'smile',
+                        component: Welcome
+                    },
+                    {
+                        path: '/admin',
+                        name: 'admin',
+                        icon: 'crown',
+                        component: Admin,
+                        routes: [
+                            {
+                                path: '/admin/sub-page',
+                                name: 'sub-page',
+                                icon: 'smile',
+                                component: Welcome
+                            }
+                        ]
+                    },
+                    {
+                        name: 'list.table-list',
+                        icon: 'table',
+                        path: '/list',
+                        component: Welcome
+                    },
+                    {
+                        component: NoFoundPage
+                    }
+                ]
+            },
+            {
+                component: NoFoundPage
+            }
+        ]
     },
     {
-        path: '/404',
-        exact: true,
         component: NoFoundPage
     }
 ] as any;

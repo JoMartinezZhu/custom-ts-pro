@@ -9,7 +9,6 @@ import ProLayout, {
     Settings,
     DefaultFooter
 } from '@ant-design/pro-layout';
-import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect, router as DvaRouter } from 'dva';
@@ -23,7 +22,7 @@ import logo from '../assets/logo.svg';
 
 const noMatch = (
     <Result
-        status={403}
+        status="403"
         title="403"
         subTitle="Sorry, you are not authorized to access this page."
         extra={
@@ -139,13 +138,13 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         }
     }; // get children authority
 
-    const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
-        authority: undefined
-    };
+    // const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
+    //     authority: undefined
+    // };
+
     return (
         <ProLayout
             logo={logo}
-            formatMessage={formatMessage}
             menuHeaderRender={(logoDom, titleDom) => (
                 <DvaRouter.Link to="/">
                     {logoDom}
@@ -181,7 +180,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             {...props}
             {...settings}
         >
-            <Authorized authority={authorized && authorized.authority} noMatch={noMatch}>
+            <Authorized authority={null} noMatch={noMatch}>
                 {children}
             </Authorized>
         </ProLayout>
