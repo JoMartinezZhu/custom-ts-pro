@@ -40,21 +40,21 @@ module.exports = [
         }),
         sideEffects: true
     },
-    // {
-    //     test: lessRegex,
-    //     exclude: lessModuleRegex,
-    //     use: getStyleLoaders(
-    //         {
-    //             importLoaders: 2,
-    //             sourceMap: true
-    //         },
-    //         'less-loader'
-    //     ),
-    //     sideEffects: true
-    // },
-    // using the extension .module.less
     {
         test: lessRegex,
+        exclude: lessModuleRegex,
+        use: getStyleLoaders(
+            {
+                importLoaders: 2,
+                sourceMap: true
+            },
+            'less-loader'
+        ),
+        sideEffects: true
+    },
+    // using the extension .module.less
+    {
+        test: lessModuleRegex,
         use: getStyleLoaders(
             {
                 importLoaders: 2,
