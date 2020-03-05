@@ -7,7 +7,7 @@ import { NoticeItem } from '@models/global';
 import { CurrentUser } from '@models/user';
 import { ConnectProps, ConnectState } from '@models/connect';
 import NoticeIcon from '../NoticeIcon';
-import styles from './index.less';
+import styles from './index.module.less';
 
 export interface GlobalHeaderRightProps extends ConnectProps {
     notices?: NoticeItem[];

@@ -5,7 +5,7 @@ import { connect } from 'dva';
 import { ConnectProps, ConnectState } from '@models/connect';
 import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
-import styles from './index.less';
+import styles from './index.module.less';
 
 export type SiderTheme = 'light' | 'dark';
 export interface GlobalHeaderRightProps extends ConnectProps {

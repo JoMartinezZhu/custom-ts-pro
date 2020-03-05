@@ -6,7 +6,7 @@ import { getFakeCaptcha } from '@services/login';
 
 import ItemMap from './map';
 import LoginContext, { LoginContextProps } from './LoginContext';
-import styles from './index.less';
+import styles from './index.module.less';
 
 export type WrappedLoginItemProps = LoginItemProps;
 export type LoginItemKeyType = keyof typeof ItemMap;

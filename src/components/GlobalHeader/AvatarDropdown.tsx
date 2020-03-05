@@ -6,7 +6,7 @@ import { connect } from 'dva';
 import { ConnectProps, ConnectState } from '@models/connect';
 import { CurrentUser } from '@models/user';
 import HeaderDropdown from '../HeaderDropdown';
-import styles from './index.less';
+import styles from './index.module.less';
 
 export interface GlobalHeaderRightProps extends ConnectProps {
     currentUser?: CurrentUser;

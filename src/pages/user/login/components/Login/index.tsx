@@ -9,7 +9,7 @@ import LoginContext from './LoginContext';
 import LoginItem, { LoginItemProps } from './LoginItem';
 import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
-import styles from './index.less';
+import styles from './index.module.less';
 
 export interface LoginProps {
     activeKey?: string;
