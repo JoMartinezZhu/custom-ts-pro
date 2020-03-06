@@ -3,7 +3,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 
 module.exports = {
     runtimeChunk: {
-        name: 'manifest' // webpack运行环境(模块解析和加载)和模块信息清单 单独打包出来
+        name: entrypoint => `runtime-${entrypoint.name}` // webpack运行环境(模块解析和加载)和模块信息清单 单独打包出来
     },
     splitChunks: {
         chunks: 'all',

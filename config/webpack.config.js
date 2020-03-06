@@ -1,24 +1,38 @@
 const openBrowser = require('react-dev-utils/openBrowser');
 
 const { resolve } = require('./utils');
+// const ignoredFiles = require('react-dev-utils/ignoredFiles');
+// const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
+// const { checkBrowsers } = require('react-dev-utils/browsersHelper');
 
+const paths = require('./paths');
+const constants = require('./constants');
 const plugins = require('./plugins');
 const tsRules = require('./rules/tsRules');
 const styleRules = require('./rules/styleRules');
 const fileRules = require('./rules/fileRules');
 const optimization = require('./optimization');
 
-const isDevMode = process.env.NODE_ENV === 'development';
+const { isEnvDevelopment, isEnvProduction, shouldUseSourceMap } = constants;
 /**
  * @type{import('webpack').Configuration}
  */
 module.exports = {
-    mode: process.env.NODE_ENV,
-    entry: resolve('src/index.tsx'),
+    mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
+    bail: isEnvProduction,
+    devtool: isEnvProduction
+        ? shouldUseSourceMap
+            ? 'source-map'
+            : false
+        : isEnvDevelopment && 'cheap-module-source-map',
+    entry: paths.appEntryFile,
+    entry: [isEnvDevelopment && require.resolve('react-dev-utils/webpackHotDevClient'), paths.appEntryFile].filter(
+        Boolean
+    ),
     output: {
-        path: resolve('dist'),
-        filename: isDevMode ? '[name].js' : '[name].[contenthash].js',
-        chunkFilename: isDevMode ? '[name].js' : '[name].[contenthash].js',
+        path: paths.appBuild,
+        filename: isEnvDevelopment ? '[name].js' : '[name].[contenthash:8].js',
+        chunkFilename: isEnvDevelopment ? '[name].chunk.js' : '[name].[contenthash].chunk.js',
         publicPath: '/'
     },
     resolve: {
@@ -34,12 +48,17 @@ module.exports = {
         }
     },
     plugins,
-    optimization: isDevMode ? {} : optimization,
+    optimization: isEnvDevelopment ? {} : optimization,
     module: {
         rules: [...tsRules, ...styleRules, ...fileRules]
     },
-    devtool: isDevMode ? undefined : 'source-map', // TODO:分析source-map的选择
     devServer: {
+        compress: true,
+        clientLogLevel: 'none',
+        contentBase: paths.appBuild,
+        transportMode: 'ws',
+        injectClient: false,
+        progress: true,
         port: 8081,
         disableHostCheck: true,
         historyApiFallback: true, // 单页应用中当react的路由模式是BrowserRouter，historyApiFallback要设置为true,会在找不到页面的情况下跳转回index.html
