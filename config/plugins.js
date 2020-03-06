@@ -12,7 +12,7 @@ module.exports = [
     //     chunkFilename: '[name].[contenthash].css'
     // }),
     new HtmlWebpackPlugin({
-        template: resolve('build/tpl/index.ejs')
+        template: resolve('config/tpl/index.ejs')
     }),
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)

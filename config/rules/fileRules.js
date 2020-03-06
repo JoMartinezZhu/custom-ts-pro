@@ -1,6 +1,3 @@
-const { resolve } = require('./../utils');
-const { threadLoader, cacheLoader } = require('../loaders');
-
 function getUrlLoader(assetsPrefix) {
     return {
         loader: 'url-loader',
