@@ -2,21 +2,11 @@
 
 const fs = require('fs');
 const { execSync } = require('child_process');
-
 const program = require('commander');
-
 const rc = require('rc');
-
 const uploadrc = rc('upload');
 
-const packageLib = require('./package.json');
-
-program.version(packageLib.version).usage('./bin [options] <command>');
-
-program
-    .command('dev')
-    .description('开发者模式')
-    .action(devCmd);
+program.usage('./bin [options] <command>');
 
 program
     .command('release')
@@ -30,14 +20,9 @@ program
 
 program.parse(process.argv);
 
-function devCmd() {
-    console.log(process.env.TARGET);
-    // execSync('npm run dev', { stdio: 'inherit' });
-}
-
 function buildCmd() {
-    setEnvVariable();
-    execSync('npm run build:webpack', { stdio: 'inherit' });
+    execSync('npm run build', { stdio: 'inherit' });
+    process.exit();
 }
 
 async function releaseCmd() {
@@ -45,6 +30,7 @@ async function releaseCmd() {
     buildCmd();
     require('upload_qianjin').upload();
     resetUploadrc();
+    process.exit();
 }
 
 function setPrivateVariable() {

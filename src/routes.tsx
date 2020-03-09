@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { SmileOutlined, TableOutlined } from '@ant-design/icons';
 import { renderRoutes } from '@utils/renderer-react';
 
-import UserLayout from '@layouts/UserLayout';
+// import UserLayout from '@layouts/UserLayout';
 import SecurityLayout from '@layouts/SecurityLayout';
 import BasicLayout from '@layouts/BasicLayout';
 import NoFoundPage from '@pages/NoFoundPage';
@@ -11,27 +11,25 @@ import { router as DvaRouter } from 'dva';
 
 const { Router } = DvaRouter;
 
-const Login = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/user/login'));
-const Welcome = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/Welcome'));
-const Home = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/Home'));
+const Welcome = lazy(() => import(/* webpackChunkName:"Welcome" */ '@pages/Welcome'));
 
 const routes = [
-    {
-        path: '/user',
-        component: UserLayout,
-        routes: [
-            {
-                path: '/user',
-                exact: true,
-                redirect: '/user/login'
-            },
-            {
-                name: 'login',
-                path: '/user/login',
-                component: Login
-            }
-        ]
-    },
+    // {
+    //     path: '/user',
+    //     component: UserLayout,
+    //     routes: [
+    //         {
+    //             path: '/user',
+    //             exact: true,
+    //             redirect: '/user/login'
+    //         },
+    //         {
+    //             name: 'login',
+    //             path: '/user/login',
+    //             component: Login
+    //         }
+    //     ]
+    // },
     {
         path: '/',
         component: SecurityLayout,
