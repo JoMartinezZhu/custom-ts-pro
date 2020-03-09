@@ -45,7 +45,6 @@
         "paths": {
             "@pages/*": ["./src/pages/*"],
             "@components/*": ["./src/components/*"],
-            "@store/*": ["./src/store/*"],
             "@services/*": ["./src/services/*"],
             "@models/*": ["./src/models/*"],
             "@utils/*": ["./src/utils/*"],

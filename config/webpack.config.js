@@ -1,21 +1,21 @@
 const openBrowser = require('react-dev-utils/openBrowser');
 
 const { resolve } = require('./utils');
-// const ignoredFiles = require('react-dev-utils/ignoredFiles');
-// const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
-// const { checkBrowsers } = require('react-dev-utils/browsersHelper');
 
 const paths = require('./paths');
-const constants = require('./constants');
+const { isEnvDevelopment, isEnvProduction, shouldUseSourceMap } = require('./constants');
 const plugins = require('./plugins');
 const tsRules = require('./rules/tsRules');
 const styleRules = require('./rules/styleRules');
 const fileRules = require('./rules/fileRules');
 const optimization = require('./optimization');
 
-const { isEnvDevelopment, isEnvProduction, shouldUseSourceMap } = constants;
 /**
  * @type{import('webpack').Configuration}
+ * TODO:
+ * 1.根据需求具体指定source-map
+ * 2.开启热更新
+ *
  */
 module.exports = {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
@@ -40,17 +40,11 @@ module.exports = {
         alias: {
             '@pages': resolve('src/pages'),
             '@components': resolve('src/components'),
-            '@store': resolve('src/store'),
             '@services': resolve('src/services'),
             '@models': resolve('src/models'),
             '@utils': resolve('src/utils'),
             '@layouts': resolve('src/layouts')
         }
-    },
-    plugins,
-    optimization: isEnvDevelopment ? {} : optimization,
-    module: {
-        rules: [...tsRules, ...styleRules, ...fileRules]
     },
     devServer: {
         compress: true,
@@ -59,6 +53,7 @@ module.exports = {
         transportMode: 'ws',
         injectClient: false,
         progress: true,
+        hot: true,
         port: 8081,
         disableHostCheck: true,
         historyApiFallback: true, // 单页应用中当react的路由模式是BrowserRouter，historyApiFallback要设置为true,会在找不到页面的情况下跳转回index.html
@@ -66,5 +61,10 @@ module.exports = {
         after: function() {
             openBrowser(`http://localhost:8081`);
         }
+    },
+    plugins,
+    optimization: isEnvDevelopment ? {} : optimization,
+    module: {
+        rules: [...tsRules, ...styleRules, ...fileRules]
     }
 };

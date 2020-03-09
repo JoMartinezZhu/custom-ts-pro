@@ -1,38 +1,25 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 
-const { resolve } = require('./utils');
-const { isEnvDevelopment, isEnvProduction, shouldUseSourceMap, getClientEnvironment } = require('./constants');
+const { isEnvDevelopment, isEnvProduction, getClientEnvironment } = require('./constants');
+const env = getClientEnvironment();
+const paths = require('./paths');
 
 module.exports = [
-    new HtmlWebpackPlugin(
-        Object.assign(
-            {},
-            {
-                inject: true,
-                template: paths.appHtml
-            },
-            isEnvProduction
-                ? {
-                      minify: {
-                          removeComments: true,
-                          collapseWhitespace: true,
-                          removeRedundantAttributes: true,
-                          useShortDoctype: true,
-                          removeEmptyAttributes: true,
-                          removeStyleLinkTypeAttributes: true,
-                          keepClosingSlash: true,
-                          minifyJS: true,
-                          minifyCSS: true,
-                          minifyURLs: true
-                      }
-                  }
-                : undefined
-        )
-    ),
-    new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-    // new HardSourceWebpackPlugin()
-];
+    new HtmlWebpackPlugin({
+        inject: true,
+        template: paths.appHtml
+    }),
+    new webpack.DefinePlugin(env.stringified),
+    isEnvProduction &&
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+            chunkFilename: '[name].[contenthash].chunk.css'
+        }),
+    isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isEnvDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+].filter(Boolean);

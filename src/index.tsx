@@ -4,8 +4,6 @@ import dva, { DvaInstance } from 'dva';
 import createBrowserHistory from 'history/createBrowserHistory';
 import createLoading from 'dva-loading';
 
-// import { renderRoutes } from 'react-router-config';
-
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 
