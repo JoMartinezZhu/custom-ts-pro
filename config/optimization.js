@@ -13,25 +13,23 @@ module.exports = {
         automaticNameDelimiter: '~',
         automaticNameMaxLength: 30,
         cacheGroups: {
+            commons: {
+                name: 'commons',
+                chunks: 'initial',
+                test: /[\\/]node_modules[\\/]/
+            },
             antd: {
-                test: /[\\/]node_modules[\\/](antd|@ant-design)/,
                 name: 'antd',
                 chunks: 'all',
-                priority: 1
+                test: /[\\/]node_modules[\\/](antd|@ant-design)[\\/]/,
+                priority: 9
             },
-            dll: {
+            vendor: {
+                name: 'vendor',
+                chunks: 'all',
                 test: /[\\/]node_modules[\\/](moment|axios)/,
                 minChunks: 1,
-                priority: 2,
-                name: 'dll',
-                reuseExistingChunk: true
-            },
-            vendors: {
-                name: 'vendors',
-                chunks: 'all',
-                minChunks: 1,
-                test: /[\\/]node_modules[\\/]/,
-                priority: -10
+                priority: 10
             }
         }
     },

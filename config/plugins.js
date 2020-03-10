@@ -4,12 +4,12 @@ const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const { isEnvDevelopment, isEnvProduction, getClientEnvironment } = require('./constants');
 const env = getClientEnvironment();
 const paths = require('./paths');
 
-const HardSource = require('hard-source-webpack-plugin');
 module.exports = [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -25,5 +25,5 @@ module.exports = [
     isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
     isEnvDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    isEnvProduction && new HardSource()
+    isEnvProduction && new BundleAnalyzerPlugin()
 ].filter(Boolean);
