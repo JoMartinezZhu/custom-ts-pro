@@ -5,6 +5,7 @@ module.exports = {
     runtimeChunk: {
         name: entrypoint => `runtime-${entrypoint.name}` // webpack运行环境(模块解析和加载)和模块信息清单 单独打包出来
     },
+    usedExports: true,
     splitChunks: {
         chunks: 'all',
         minSize: 0,

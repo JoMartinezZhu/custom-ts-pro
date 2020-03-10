@@ -25,5 +25,8 @@ module.exports = [
     isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
     isEnvDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    isEnvProduction && new BundleAnalyzerPlugin()
+    isEnvProduction &&
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static'
+        })
 ].filter(Boolean);

@@ -1,6 +1,7 @@
 {
     "name": "custom-ts-pro",
     "version": "1.0.0",
+    "sideEffects": false,
     "description": "",
     "main": "index.js",
     "browserslist": [
