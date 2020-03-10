@@ -14,7 +14,8 @@ module.exports = [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
         inject: true,
-        template: paths.appHtml
+        template: paths.appHtml,
+        ...env.raw
     }),
     new webpack.DefinePlugin(env.stringified),
     isEnvProduction &&

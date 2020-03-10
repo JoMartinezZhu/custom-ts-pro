@@ -8,7 +8,6 @@ const { cacheLoader, threadLoader } = require('../loaders');
 const { isEnvDevelopment, isEnvProduction, shouldUseSourceMap } = require('../constants');
 
 const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
 const lessRegex = /\.(less)$/;
 const lessModuleRegex = /\.module\.(less)$/;
 
@@ -55,7 +54,6 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 module.exports = [
     {
         test: cssRegex,
-        exclude: cssModuleRegex,
         use: getStyleLoaders({
             importLoaders: 1,
             sourceMap: isEnvProduction && shouldUseSourceMap
@@ -76,6 +74,7 @@ module.exports = [
     },
     {
         test: lessModuleRegex,
+        include: /src/,
         use: getStyleLoaders(
             {
                 importLoaders: 2,
