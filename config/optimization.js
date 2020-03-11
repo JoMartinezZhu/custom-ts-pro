@@ -35,7 +35,10 @@ module.exports = {
         }
     },
     minimizer: [
-        new TerserWebpackPlugin({ cache: true, parallel: true }),
+        new TerserWebpackPlugin({
+            cache: true,
+            parallel: true
+        }),
         new OptimizeCssAssetsWebpackPlugin({
             cssProcessor: require('cssnano'),
             cssProcessorOptions: {

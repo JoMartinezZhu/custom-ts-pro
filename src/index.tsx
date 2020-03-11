@@ -1,11 +1,6 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
 import dva, { DvaInstance } from 'dva';
 import createBrowserHistory from 'history/createBrowserHistory';
 import createLoading from 'dva-loading';
-
-import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
 
 import './global.less';
 

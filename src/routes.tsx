@@ -2,34 +2,42 @@ import React, { lazy, Suspense } from 'react';
 import { SmileOutlined, TableOutlined } from '@ant-design/icons';
 import { renderRoutes } from '@utils/renderer-react';
 
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 // import UserLayout from '@layouts/UserLayout';
-import SecurityLayout from '@layouts/SecurityLayout';
-import BasicLayout from '@layouts/BasicLayout';
+// import SecurityLayout from '@layouts/SecurityLayout';
+// import BasicLayout from '@layouts/BasicLayout';
 import NoFoundPage from '@pages/NoFoundPage';
-import Admin from '@pages/Admin';
 import { router as DvaRouter } from 'dva';
+import { PageLoading } from '@ant-design/pro-layout';
 
 const { Router } = DvaRouter;
 
+const UserLayout = lazy(() => import(/* webpackChunkName:"UserLayout" */ '@layouts/UserLayout'));
+const SecurityLayout = lazy(() => import(/* webpackChunkName:"SecurityLayout" */ '@layouts/SecurityLayout'));
+const BasicLayout = lazy(() => import(/* webpackChunkName:"BasicLayout" */ '@layouts/BasicLayout'));
+
+const Login = lazy(() => import(/* webpackChunkName:"Login" */ '@pages/user/login'));
 const Welcome = lazy(() => import(/* webpackChunkName:"Welcome" */ '@pages/Welcome'));
+const Admin = lazy(() => import(/* webpackChunkName:"Admin" */ '@pages/Admin'));
 
 const routes = [
-    // {
-    //     path: '/user',
-    //     component: UserLayout,
-    //     routes: [
-    //         {
-    //             path: '/user',
-    //             exact: true,
-    //             redirect: '/user/login'
-    //         },
-    //         {
-    //             name: 'login',
-    //             path: '/user/login',
-    //             component: Login
-    //         }
-    //     ]
-    // },
+    {
+        path: '/user',
+        component: UserLayout,
+        routes: [
+            {
+                path: '/user',
+                exact: true,
+                redirect: '/user/login'
+            },
+            {
+                name: 'login',
+                path: '/user/login',
+                component: Login
+            }
+        ]
+    },
     {
         path: '/',
         component: SecurityLayout,
@@ -87,8 +95,10 @@ const routes = [
 
 function GeneratorRoutes(props: any) {
     return (
-        <Suspense fallback="loading">
-            <Router history={props.history}>{renderRoutes({ routes })}</Router>
+        <Suspense fallback={<PageLoading />}>
+            <ConfigProvider locale={zhCN}>
+                <Router history={props.history}>{renderRoutes({ routes })}</Router>
+            </ConfigProvider>
         </Suspense>
     );
 }

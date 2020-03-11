@@ -66,5 +66,8 @@ module.exports = {
     optimization: isEnvDevelopment ? {} : optimization,
     module: {
         rules: [...tsRules, ...styleRules, ...fileRules]
+    },
+    stats: {
+        children: false
     }
 };

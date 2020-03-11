@@ -2,9 +2,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 const { isEnvDevelopment, isEnvProduction, getClientEnvironment } = require('./constants');
 const env = getClientEnvironment();
@@ -29,5 +29,9 @@ module.exports = [
     isEnvProduction &&
         new BundleAnalyzerPlugin({
             analyzerMode: 'static'
+        }),
+    isEnvProduction &&
+        new FilterWarningsPlugin({
+            exclude: /mini-css-extract-plugin[^]*Conflicting order/
         })
 ].filter(Boolean);
