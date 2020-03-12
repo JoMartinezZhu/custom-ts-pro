@@ -2,8 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const postcssNormalize = require('postcss-normalize');
 
-// const { resolve } = require('../utils');
-const { cacheLoader, threadLoader } = require('../loaders');
+const { cacheLoader } = require('../loaders');
 
 const { isEnvDevelopment, isEnvProduction, shouldUseSourceMap } = require('../constants');
 

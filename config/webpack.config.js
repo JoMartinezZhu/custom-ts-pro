@@ -26,9 +26,7 @@ module.exports = {
             : false
         : isEnvDevelopment && 'cheap-module-source-map',
     entry: paths.appEntryFile,
-    entry: [isEnvDevelopment && require.resolve('react-dev-utils/webpackHotDevClient'), paths.appEntryFile].filter(
-        Boolean
-    ),
+    entry: [paths.appEntryFile].filter(Boolean),
     output: {
         path: paths.appBuild,
         filename: isEnvDevelopment ? '[name].js' : '[name].[contenthash:8].js',
