@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { Card, Typography, Alert, Pagination } from 'antd';
+import { Card, Typography, Alert } from 'antd';
 
 import styles from './index.module.less';
 
@@ -12,15 +12,10 @@ const CodePreview: React.FC<{}> = ({ children }) => (
     </pre>
 );
 
-function onShowSizeChange(current: number, pageSize: number) {
-    console.log(current, pageSize);
-}
-
 function Welcome() {
     return (
         <PageHeaderWrapper>
             <Card>
-                <Pagination showSizeChanger onShowSizeChange={onShowSizeChange} defaultCurrent={3} total={500} />
                 <Alert
                     message="umi ui 现已发布，点击右下角 umi 图标即可使用"
                     type="success"
