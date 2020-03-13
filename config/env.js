@@ -63,6 +63,7 @@ function getClientEnvironment() {
         }, {})
     };
 
+    console.log('stringified', stringified);
     return { raw, stringified };
 }
 

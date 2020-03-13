@@ -4,9 +4,6 @@ import { renderRoutes } from '@utils/renderer-react';
 
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-// import UserLayout from '@layouts/UserLayout';
-// import SecurityLayout from '@layouts/SecurityLayout';
-// import BasicLayout from '@layouts/BasicLayout';
 import NoFoundPage from '@pages/NoFoundPage';
 import { router as DvaRouter } from 'dva';
 import { PageLoading } from '@ant-design/pro-layout';
@@ -27,14 +24,14 @@ const routes = [
         component: UserLayout,
         routes: [
             {
-                path: '/user',
-                exact: true,
-                redirect: '/user/login'
-            },
-            {
                 name: 'login',
                 path: '/user/login',
                 component: Login
+            },
+            {
+                path: '/user',
+                exact: true,
+                redirect: '/user/login'
             }
         ]
     },
@@ -46,11 +43,6 @@ const routes = [
                 path: '/',
                 component: BasicLayout,
                 routes: [
-                    {
-                        path: '/',
-                        exact: true,
-                        redirect: '/welcome'
-                    },
                     {
                         path: '/welcome',
                         exact: true,
@@ -77,6 +69,11 @@ const routes = [
                         icon: <TableOutlined />,
                         path: '/list',
                         component: Welcome
+                    },
+                    {
+                        path: '/',
+                        exact: true,
+                        redirect: '/welcome'
                     },
                     {
                         component: NoFoundPage

@@ -80,36 +80,16 @@ const proxy = {
         }
     ],
     'POST /api/login/account': (req, res) => {
-        const { password, userName, type } = req.body;
-        if (password === 'ant.design' && userName === 'admin') {
-            res.send({
-                status: 'ok',
-                type,
-                currentAuthority: 'admin'
+        const { mobile, captcha } = req.body;
+        if (captcha === '2222') {
+            return res.send({
+                status: 'error'
             });
-            return;
         }
-        if (password === 'ant.design' && userName === 'user') {
-            res.send({
-                status: 'ok',
-                type,
-                currentAuthority: 'user'
-            });
-            return;
-        }
-        if (type === 'mobile') {
-            res.send({
-                status: 'ok',
-                type,
-                currentAuthority: 'admin'
-            });
-            return;
-        }
-
         res.send({
-            status: 'error',
-            type,
-            currentAuthority: 'guest'
+            status: 'ok',
+            currentAuthority: 'admin',
+            token: 'token 123'
         });
     },
     'POST /api/register': (req, res) => {

@@ -2,7 +2,7 @@ import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-des
 import { Helmet } from 'react-helmet';
 import React from 'react';
 import { connect, router as DvaRouter } from 'dva';
-import { ConnectProps, ConnectState } from '@models/connect';
+import { ConnectProps, IConnectState } from '@models/connect';
 import styles from './UserLayout.module.less';
 
 export interface UserLayoutProps extends ConnectProps {
@@ -61,4 +61,4 @@ const UserLayout: React.FC<UserLayoutProps> = props => {
     );
 };
 
-export default connect(({ settings }: ConnectState) => ({ ...settings }))(UserLayout);
+export default connect(({ settings }: IConnectState) => ({ ...settings }))(UserLayout);

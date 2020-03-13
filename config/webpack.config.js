@@ -60,7 +60,7 @@ module.exports = {
         before(app) {
             apiMocker(app, resolve('./mocker/index.js'), {
                 proxy: {
-                    '/api/(.*)': 'http://127.0.0.1:8081'
+                    '/api/(.*)': 'http://localhost:8081'
                 },
                 changeHost: true
             });

@@ -136,11 +136,11 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
                 payload
             });
         }
-    }; // get children authority
-
-    // const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
-    //     authority: undefined
-    // };
+    };
+    // get children authority
+    const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
+        authority: undefined
+    };
 
     return (
         <ProLayout

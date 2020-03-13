@@ -1,8 +1,6 @@
-import { Tooltip, Tag } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import { connect } from 'dva';
-import { ConnectProps, ConnectState } from '@models/connect';
+import { ConnectProps, IConnectState } from '@models/connect';
 import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 import styles from './index.module.less';
@@ -12,14 +10,6 @@ export interface GlobalHeaderRightProps extends ConnectProps {
     theme?: SiderTheme;
     layout: 'sidemenu' | 'topmenu';
 }
-
-const ENVTagColor = {
-    dev: 'orange',
-    test: 'green',
-    pre: '#87d068'
-};
-
-const REACT_APP_ENV = 'dev';
 
 const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
     const { theme, layout } = props;
@@ -50,31 +40,16 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
                         value: 'Pro Layout'
                     }
                 ]}
-                // onSearch={value => {
-                //   //console.log('input', value);
-                // }}
+                onSearch={value => {
+                    console.log('input', value);
+                }}
             />
-            <Tooltip title="使用文档">
-                <a
-                    target="_blank"
-                    href="https://pro.ant.design/docs/getting-started"
-                    rel="noopener noreferrer"
-                    className={styles.action}
-                >
-                    <QuestionCircleOutlined />
-                </a>
-            </Tooltip>
             <Avatar />
-            {REACT_APP_ENV && (
-                <span>
-                    <Tag color={ENVTagColor[REACT_APP_ENV]}>{REACT_APP_ENV}</Tag>
-                </span>
-            )}
         </div>
     );
 };
 
-export default connect(({ settings }: ConnectState) => ({
+export default connect(({ settings }: IConnectState) => ({
     theme: settings.navTheme,
     layout: settings.layout
 }))(GlobalHeaderRight);

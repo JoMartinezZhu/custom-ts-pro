@@ -1,30 +1,29 @@
 import { Reducer } from 'redux';
 import { Effect } from 'dva';
 import { stringify } from 'querystring';
+import history from '@utils/history';
 
 import { fakeAccountLogin } from '@services/login';
 import { setAuthority } from '@utils/authority';
 import { getPageQuery } from '@utils/utils';
 
-export interface StateType {
+export interface ILoginModelState {
     status?: 'ok' | 'error';
-    type?: string;
-    currentAuthority?: 'user' | 'guest' | 'admin';
 }
 
-export interface LoginModelType {
+export interface ILoginModel {
     namespace: string;
-    state: StateType;
+    state: ILoginModelState;
     effects: {
         login: Effect;
         logout: Effect;
     };
     reducers: {
-        changeLoginStatus: Reducer<StateType>;
+        syncAuthorityData: Reducer<ILoginModelState>;
     };
 }
 
-const Model: LoginModelType = {
+const Model: ILoginModel = {
     namespace: 'login',
 
     state: {
@@ -35,10 +34,9 @@ const Model: LoginModelType = {
         *login({ payload }, { call, put }) {
             const response = yield call(fakeAccountLogin, payload);
             yield put({
-                type: 'changeLoginStatus',
+                type: 'syncAuthorityData',
                 payload: response
             });
-            // Login successfully
             if (response.status === 'ok') {
                 const urlParams = new URL(window.location.href);
                 const params = getPageQuery();
@@ -51,35 +49,33 @@ const Model: LoginModelType = {
                             redirect = redirect.substr(redirect.indexOf('#') + 1);
                         }
                     } else {
-                        window.location.href = '/';
-                        return;
+                        return (window.location.href = '/');
                     }
                 }
-                // router.replace(redirect || '/');
+                history.replace(redirect || '/');
             }
         },
 
         logout() {
             const { redirect } = getPageQuery();
-            // Note: There may be security issues, please note
             if (window.location.pathname !== '/user/login' && !redirect) {
-                // router.replace({
-                //     pathname: '/user/login',
-                //     search: stringify({
-                //         redirect: window.location.href
-                //     })
-                // });
+                history.replace({
+                    pathname: '/user/login',
+                    search: stringify({
+                        redirect: window.location.href
+                    })
+                });
             }
         }
     },
 
     reducers: {
-        changeLoginStatus(state, { payload }) {
+        syncAuthorityData(state, { payload }) {
             setAuthority(payload.currentAuthority);
+            localStorage.setItem('token', payload.token);
             return {
                 ...state,
-                status: payload.status,
-                type: payload.type
+                status: payload.status
             };
         }
     }

@@ -1,6 +1,6 @@
 import { parse } from 'querystring';
-import * as pathRegexp from 'path-to-regexp';
-import { Route } from '@models/connect';
+import { pathToRegexp } from 'path-to-regexp';
+import { IRoute } from '@models/connect';
 
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
 
@@ -13,20 +13,20 @@ export const getPageQuery = () => parse(window.location.href.split('?')[1]);
  * @param router [{}]
  * @param pathname string
  */
-export const getAuthorityFromRouter = <T extends Route>(router: T[] = [], pathname: string): T | undefined => {
+export const getAuthorityFromRouter = <T extends IRoute>(router: T[] = [], pathname: string): T | undefined => {
     const authority = router.find(
         ({ routes, path = '/' }) =>
-            (path && (pathRegexp(path) as any).exec(pathname)) || (routes && getAuthorityFromRouter(routes, pathname))
+            (path && (pathToRegexp(path) as any).exec(pathname)) || (routes && getAuthorityFromRouter(routes, pathname))
     );
     if (authority) return authority;
     return undefined;
 };
 
-export const getRouteAuthority = (path: string, routeData: Route[]) => {
+export const getRouteAuthority = (path: string, routeData: IRoute[]) => {
     let authorities: string[] | string | undefined;
     routeData.forEach(route => {
         // match prefix
-        if (pathRegexp(`${route.path}/(.*)`).test(`${path}/`)) {
+        if (pathToRegexp(`${route.path}/(.*)`).test(`${path}/`)) {
             if (route.authority) {
                 authorities = route.authority;
             }

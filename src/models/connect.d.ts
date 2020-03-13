@@ -4,11 +4,11 @@ import { RouteProps } from 'react-router-dom';
 import { GlobalModelState } from './global';
 import { DefaultSettings as SettingModelState } from '../config/defaultSettings';
 import { IUserModelState } from './user';
-import { StateType } from './login';
+import { ILoginModelState } from './login';
 
 export { GlobalModelState, SettingModelState, IUserModelState };
 
-export interface Loading {
+export interface ILoading {
     global: boolean;
     effects: { [key: string]: boolean | undefined };
     models: {
@@ -20,21 +20,21 @@ export interface Loading {
     };
 }
 
-export interface ConnectState {
+export interface IConnectState {
     global: GlobalModelState;
-    loading: Loading;
+    loading: ILoading;
     settings: SettingModelState;
     user: IUserModelState;
-    login: StateType;
+    login: ILoginModelState;
 }
 
-export interface Route extends MenuDataItem {
-    routes?: Route[];
+export interface IRoute extends MenuDataItem {
+    routes?: IRoute[];
 }
 
 /**
  * @type T: Params matched in dynamic routing
  */
-export interface ConnectProps extends Partial<RouteProps>, Route {
+export interface ConnectProps extends Partial<RouteProps>, IRoute {
     dispatch?: Dispatch<AnyAction>;
 }

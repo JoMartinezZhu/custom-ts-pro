@@ -1,6 +1,6 @@
 import dva, { DvaInstance } from 'dva';
-import createBrowserHistory from 'history/createBrowserHistory';
 import createLoading from 'dva-loading';
+import history from '@utils/history';
 
 import './global.less';
 
@@ -10,7 +10,7 @@ export function getApp() {
 }
 
 export function onCreate() {
-    app = dva({ history: createBrowserHistory() });
+    app = dva({ history });
     app.use(createLoading());
     app.model({ namespace: 'global', ...require('./models/global').default });
     app.model({ namespace: 'login', ...require('./models/login').default });
