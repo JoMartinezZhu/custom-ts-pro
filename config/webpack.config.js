@@ -1,4 +1,5 @@
 const openBrowser = require('react-dev-utils/openBrowser');
+const apiMocker = require('mocker-api');
 
 const { resolve } = require('./utils');
 
@@ -56,6 +57,14 @@ module.exports = {
         disableHostCheck: true,
         historyApiFallback: true, // 单页应用中当react的路由模式是BrowserRouter，historyApiFallback要设置为true,会在找不到页面的情况下跳转回index.html
         host: '0.0.0.0',
+        before(app) {
+            apiMocker(app, resolve('./mocker/index.js'), {
+                proxy: {
+                    '/api/(.*)': 'http://127.0.0.1:8081'
+                },
+                changeHost: true
+            });
+        },
         after: function() {
             openBrowser(`http://localhost:8081`);
         }
