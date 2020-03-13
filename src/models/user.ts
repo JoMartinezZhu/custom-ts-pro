@@ -17,24 +17,24 @@ export interface CurrentUser {
     unreadCount?: number;
 }
 
-export interface UserModelState {
+export interface IUserModelState {
     currentUser?: CurrentUser;
 }
 
-export interface UserModelType {
+export interface IUserModel {
     namespace: 'user';
-    state: UserModelState;
+    state: IUserModelState;
     effects: {
         fetch: Effect;
         fetchCurrent: Effect;
     };
     reducers: {
-        saveCurrentUser: Reducer<UserModelState>;
-        changeNotifyCount: Reducer<UserModelState>;
+        saveCurrentUser: Reducer<IUserModelState>;
+        changeNotifyCount: Reducer<IUserModelState>;
     };
 }
 
-const UserModel: UserModelType = {
+const UserModel: IUserModel = {
     namespace: 'user',
 
     state: {

@@ -6,7 +6,7 @@ const NoFoundPage: React.FC<RouteComponentProps> = props => (
     <Result
         status="404"
         title="404"
-        subTitle="Sorry, the page you visited does not exist."
+        subTitle="抱歉，您访问的地址不存在."
         extra={
             <Button
                 type="primary"
@@ -14,7 +14,7 @@ const NoFoundPage: React.FC<RouteComponentProps> = props => (
                     props.history.push('/');
                 }}
             >
-                Back Home
+                首页
             </Button>
         }
     />

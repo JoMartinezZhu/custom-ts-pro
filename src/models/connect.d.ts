@@ -3,10 +3,10 @@ import { MenuDataItem } from '@ant-design/pro-layout';
 import { RouteProps } from 'react-router-dom';
 import { GlobalModelState } from './global';
 import { DefaultSettings as SettingModelState } from '../config/defaultSettings';
-import { UserModelState } from './user';
+import { IUserModelState } from './user';
 import { StateType } from './login';
 
-export { GlobalModelState, SettingModelState, UserModelState };
+export { GlobalModelState, SettingModelState, IUserModelState };
 
 export interface Loading {
     global: boolean;
@@ -24,7 +24,7 @@ export interface ConnectState {
     global: GlobalModelState;
     loading: Loading;
     settings: SettingModelState;
-    user: UserModelState;
+    user: IUserModelState;
     login: StateType;
 }
 
